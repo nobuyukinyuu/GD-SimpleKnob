@@ -1,5 +1,5 @@
 
-# Godot-SimpleKnob ![icon_knob](https://user-images.githubusercontent.com/1023003/155073112-adb430f5-19db-45eb-a6b6-881f301a9859.svg)
+# GD-SimpleKnob ![icon_knob](https://user-images.githubusercontent.com/1023003/155073112-adb430f5-19db-45eb-a6b6-881f301a9859.svg)
 SimpleKnob is a UI knob control for Godot 3.x intended to be a drop-in replacement for standard HSlider controls.  Themes and overrides created for HSlider should "just work".  Includes customizable grabber pointing orientation (inwards/outwards), knob thickness (Values < 100% create hollow or arc knobs), notch (arc) width, decimal padding, and title/value positioning.
 
 ![screenshot](https://user-images.githubusercontent.com/1023003/155067485-5918a942-3154-4292-93f7-0935c77fbcbc.gif)
