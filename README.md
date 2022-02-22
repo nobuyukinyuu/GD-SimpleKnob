@@ -4,7 +4,7 @@ SimpleKnob is a UI knob control for Godot 3.x intended to be a drop-in replaceme
 
 ![screenshot](https://user-images.githubusercontent.com/1023003/155067485-5918a942-3154-4292-93f7-0935c77fbcbc.gif)
 
-# Usage
+## Usage
 Drag Knob.tscn into your scene.  Alternatively, you can try adding one from the New Node dialog as "Knob".  The latter *should* generate a new object if the control detects it was not instanced from a scene.
 
 ## FAQ
