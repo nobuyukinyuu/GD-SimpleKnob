@@ -155,7 +155,7 @@ const _315_DEGREES = 7*PI/4.0
 
 func _input(event):
 	if !Engine.editor_hint and event is InputEventMouseButton and event.button_index == BUTTON_LEFT: 
-		if editable and event.pressed and get_rect().has_point(get_global_mouse_position()):
+		if editable and event.pressed and get_rect().has_point(get_parent().get_local_mouse_position()):
 			set_grabber(NONE, YES)
 			if travel_multiplier != 1.0:
 				#Custom override!  Begin drag
