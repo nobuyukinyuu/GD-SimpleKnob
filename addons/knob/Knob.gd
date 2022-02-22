@@ -136,12 +136,14 @@ func _ready():
 	connect("changed", self, "_on_Knob_changed")
 	connect("value_changed", self, "_on_Knob_value_changed")
 	
-	if !Engine.editor_hint:  yield(get_tree(), "idle_frame")
 	get_node("VP/Slider").theme = theme
-	update_theming()
+	if !Engine.editor_hint:  
+		yield(get_tree(), "idle_frame")
+		update_theming()
 	_on_Knob_changed()
 	set_decimal_pad(decimal_pad)
 
+	_on_Knob_resized()
 	update()
 
 
@@ -193,7 +195,7 @@ func _notification(what):
 			set_grabber(NO)
 		NOTIFICATION_VISIBILITY_CHANGED:
 			if visible:  
-				if Engine.editor_hint:  update_theming()
+				if Engine.editor_hint and owner:  update_theming()
 				update_alignments()
 
 func _on_Knob_resized():

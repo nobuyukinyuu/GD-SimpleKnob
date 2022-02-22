@@ -18,10 +18,8 @@ viewport_path = NodePath("VP")
 
 [node name="Knob" type="HSlider"]
 self_modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -992.0
-margin_bottom = -568.0
+margin_right = 32.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 24, 24 )
 tick_count = 7
 ticks_on_borders = true
