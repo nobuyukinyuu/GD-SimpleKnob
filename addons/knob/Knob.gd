@@ -47,7 +47,7 @@ func _replace():
 	q.owner = owner
 	
 	#Generate a fake input event since we don't have access to the scene inspector.  No one will notice.....
-	yield(get_tree(), "idle_frame")  #Necessary for us to have an owner to give to our replacement.
+	yield(get_tree(), "idle_frame")
 	var a = InputEventAction.new()
 	a.action = "ui_up"
 	a.pressed = true
@@ -62,7 +62,8 @@ func set_disabled(val):
 	if bg:
 		adjust(bg, "desaturate", val)
 		bg.modulate = ColorN("dimgray") if disabled else ColorN("white")
-		get_node("lblVal").modulate = ColorN("darkgray") if disabled else ColorN("white")
+		$lblTitle.modulate = Color("#404040") if disabled else ColorN("white")
+		get_node("lblVal").modulate = Color("#404040") if disabled else ColorN("white")
 	if disabled:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		captured = false
@@ -153,9 +154,9 @@ var delta:float
 const _135_DEGREES = 3*PI/4.0 
 const _315_DEGREES = 7*PI/4.0
 
-func _input(event):
+func _gui_input(event):
 	if !Engine.editor_hint and event is InputEventMouseButton and event.button_index == BUTTON_LEFT: 
-		if editable and event.pressed and get_rect().has_point(get_parent().get_local_mouse_position()):
+		if visible and editable and event.pressed:
 			set_grabber(NONE, YES)
 			if travel_multiplier != 1.0:
 				#Custom override!  Begin drag
@@ -171,7 +172,8 @@ func _input(event):
 				grab_focus()  #Makes sure user can still adjust value with keyboard after releasing
 				captured = false
 
-	elif captured and event is InputEventMouseMotion:  #Adjust the slider using custom travel distance
+func _input(event):
+	if captured and event is InputEventMouseMotion:  #Adjust the slider using custom travel distance
 		accept_event()
 		var magnitude = event.relative.length() 
 		var dir = (event.relative.angle() + PI)
