@@ -7,6 +7,7 @@ export(float, 1, 10, 0.5) var travel_multiplier = 1.0 setget set_travel
 export(float, 0, 1) var notch=0.0 setget set_notch
 export(float, 0.05, 1, 0.05) var thickness = 1.0 setget set_thickness
 export(bool) var point_outwards setget set_orientation
+export(bool) var relative_movement_only = true
 
 export(Vector2) var title_align = Vector2(0.5, -0.1) setget set_title_align
 export(Vector2) var value_align = Vector2(0.5, 0.5) setget set_value_align
@@ -160,10 +161,14 @@ func _gui_input(event):
 			set_grabber(NONE, YES)
 			if travel_multiplier != 1.0:
 				#Custom override!  Begin drag
+				accept_event()
 				lastMousePos = get_local_mouse_position()
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 				captured = true
-				accept_event()
+				if relative_movement_only:
+					var old_value=value
+					yield(get_tree(), "idle_frame")
+					value = old_value
 		elif !event.pressed and event.button_index == BUTTON_LEFT:
 			set_grabber(NONE, NO)
 			if captured:
